@@ -6,3 +6,7 @@
 #define ENHANCEMENT 6
 #define IDENTIFIER 7
 #define INTEGER 8
+#define ASSIGN 9
+#define OBRACKET 10
+#define CBRACKET 11
+#define NAME 12

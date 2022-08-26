@@ -10,7 +10,7 @@
 "issue"                 {return ISSUE;}
 "help"                  {return HELP;}
 "enhancement"           {return ENHANCEMENT;}
-"\="                    {return ASSIGN;}
+"="                     {return ASSIGN;}
 "(" 	                {return OBRACKET;}
 ")" 	                {return CBRACKET;}
 [a-zA-Z][a-zA-Z0-9]*    {return NAME;}
