@@ -1,5 +1,5 @@
 %{
-#include "scanner.h"
+#include "y.tab.h"
 %}
 
 %%
@@ -13,10 +13,11 @@
 "="                     {return ASSIGN;}
 "(" 	                {return OBRACKET;}
 ")" 	                {return CBRACKET;}
+"exit"                  {return EXIT_COMMAND;}
 [a-zA-Z][a-zA-Z0-9]*    {return NAME;}
 [1-9][0-9]*             {return INTEGER;}
 [ \t\n]                 ;
-.                       printf("unexpected token\n");
+.                       {ECHO; yyerror("unexpected character");}
 
 %%
 

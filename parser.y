@@ -1,35 +1,42 @@
 %{
+    extern int yylex();
+    extern int yylineno;
+    extern char *yytext;
     void yyerror(char* s);
     #include <stdio.h>
     #include <stdlib.h>
-    int symbols[52];
-    int updateSymbolVal(char symbol, int val);
 %}
+ 
 
 %union {int num; char id;}
 %start line
 %token print
-%token exit_command
 %token <num> number
-%token ASSIGN USER NAME ISSUE
-%token OBRACKET CBRACKET COMMA
+%token COLON COMMA USER ISSUE HELP ENHANCEMENT ASSIGN 
+%token OBRACKET CBRACKET EXIT_COMMAND NAME INTEGER
 
-%token NULTI_ASSIGNMENT
 %%
 
-line:                   NULTI_ASSIGNMENT {;};
-                    |   exit_command     {;};
+line                :   ASSIGNMENT COMMA line {printf("ss\n");}
+                    |   ASSIGNMENT       {printf("hello\n");}
+                    |   EXIT_COMMAND     {exit(EXIT_SUCCESS);}
                     ;
 
-MULTI_ASSIGNMENT:       ASSIGNMENT COMMA MULTI_ASSIGNMENT {;};
-                    |   ASSIGNMENT {;};
+ASSIGNMENT:             USER ASSIGN NAME        {printf("ssss\n");}
+                    |   ISSUE ASSIGN NAMES      {;}
                     ;
 
-ASSIGNMENT:             USER ASSIGN NAME        {;};
-                    |   ISSUE ASSIGN NAMES      {;};
+NAMES:                  NAME    {;}
+                    |   OBRACKET NAME CBRACKET              {printf("pp");}
+                    |   OBRACKET NAME COMMA NAME CBRACKET   {;}
                     ;
+%%
 
-NAMES:                  NAME    {;};
-                    |   OBRACKET NAME CBRACKET
-                    |   OBRACKET NAME COMMA NAME CBRACKET
+int main(void){
+    return yyparse();
+}
+
+void yyerror(char* s){ 
+    printf("%s\n", s);
+}
 

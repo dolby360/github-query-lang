@@ -1,3 +1,5 @@
+#pragma once 
+
 #define COLON 1
 #define COMMA 2
 #define USER 3
@@ -10,3 +12,4 @@
 #define OBRACKET 10
 #define CBRACKET 11
 #define NAME 12
+#define EXIT_COMMAND 13
