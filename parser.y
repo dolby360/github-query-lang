@@ -5,6 +5,7 @@
     void yyerror(char* s);
     #include <stdio.h>
     #include <stdlib.h>
+    #include "node_manager.h"
 %}
  
 
@@ -22,7 +23,7 @@ line                :   ASSIGNMENT COMMA line {printf("ss\n");}
                     |   EXIT_COMMAND     {exit(EXIT_SUCCESS);}
                     ;
 
-ASSIGNMENT:             USER ASSIGN NAME        {printf("ssss\n");}
+ASSIGNMENT:             USER ASSIGN NAME        {add_node()}
                     |   ISSUE ASSIGN NAMES      {;}
                     ;
 
@@ -36,7 +37,10 @@ int main(void){
     return yyparse();
 }
 
-void yyerror(char* s){ 
-    printf("%s\n", s);
+void yyerror(char* msg){ 
+	fflush(stdout);
+	fprintf(stderr, "Error: %s \n", msg);
+	fprintf(stderr, "Parser does not expect '%s'\n",yytext);
+	return 0;
 }
 

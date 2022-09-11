@@ -1,5 +1,5 @@
 /*
-This component getting node and transform it into a like.
+This component getting node data structure and transform it into link.
 For example:
 assignment
     -> lable
@@ -14,7 +14,7 @@ assignment
     -> type
     -> issues
 
-For the above ast, this program should give:
+For the above stucture, this program should give:
 https://github.com/search?q=label%3A%22Help+Wanted%22+%40dolby360&state=open&type=Issues
 
 URL to ascii:
